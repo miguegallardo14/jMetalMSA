@@ -25,6 +25,26 @@ public class PercentageOfAlignedColumnsScoreTest {
     }
 
     @Test
+    public void returnZeroColumnAligned() {
+        new Expectations() {
+            {
+                char[][] decodedSequence = new char[][]{
+                        {'-', 'R', 'C', 'A', 'D', '-'},
+                        {'I', 'B', 'E', 'K', '-', '-'},
+                        {'-', '-', 'L', 'A', '-', '-'},
+                        {'-', 'T', 'C', 'I', 'G', '-'},
+                        {'-', 'B', 'C', 'A', 'G', 'U'},
+                };
+                solution.decodeToMatrix();
+                result = decodedSequence;
+                times = 1;
+            }
+        };
+
+        assertEquals(100.0 * 0.0 / 6.0, objective.compute(solution, solution.decodeToMatrix()), EPSILON); //Aqui comparamos si da 0% de acierto, equivalente a 0 columna de 6
+    }
+
+    @Test
     public void returnOneColumnAligned() {
         new Expectations() {
             {
